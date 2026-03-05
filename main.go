@@ -16,13 +16,14 @@ func main() {
 		fmt.Println("2. Deposit Money")
 		fmt.Println("3. Withdraw Money")
 		fmt.Println("4. Exit")
-
+		fmt.Println("===========================")
 		fmt.Println("Enter your choice")
 		fmt.Scan(&choice)
 
 		switch choice {
 		case 1:
 			fmt.Println("Your curruent balance is: ", balance)
+			fmt.Println("---------------------------")
 
 		case 2:
 			fmt.Println("Enter the amount to deposit: ")
@@ -33,6 +34,7 @@ func main() {
 			} else {
 				fmt.Println("Invalid AMount")
 			}
+			fmt.Println("---------------------------")
 
 		case 3:
 			fmt.Println("Enter the amount to withdraw: ")
@@ -44,6 +46,7 @@ func main() {
 				balance -= amount
 				fmt.Println("withdraw Successful: ", amount)
 			}
+			fmt.Println("---------------------------")
 
 		case 4:
 			fmt.Println("Thanks you for using our ATM.")
