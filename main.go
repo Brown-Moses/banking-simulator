@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+
 	var balance float64 = 0
 	var choice int
 	var amount float64
@@ -17,12 +18,13 @@ func main() {
 		fmt.Println("3. Withdraw Money")
 		fmt.Println("4. Exit")
 		fmt.Println("===========================")
-		fmt.Println("Enter your choice")
+
+		fmt.Println("Enter your choice: ")
 		fmt.Scan(&choice)
 
 		switch choice {
 		case 1:
-			fmt.Println("Your curruent balance is: ", balance)
+			fmt.Println("Your current balance is: ", balance)
 			fmt.Println("---------------------------")
 
 		case 2:
@@ -33,6 +35,7 @@ func main() {
 				fmt.Println("Amount successfully deposited:", balance)
 			} else {
 				fmt.Println("Invalid AMount")
+
 			}
 			fmt.Println("---------------------------")
 
@@ -54,6 +57,7 @@ func main() {
 
 		default:
 			fmt.Println("Invalid choice. please try again.")
+
 		}
 	}
 }
