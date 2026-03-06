@@ -16,6 +16,7 @@ func main() {
 		fmt.Println("===========================")
 
 		fmt.Println("Enter your choice: ")
+		//call the choice function to handle the user's input and perform the corresponding action
 		choice()
 	}
 }
