@@ -5,8 +5,10 @@ import (
 	"os"
 )
 
+var balance float64 = 0
+
 func Choice() {
-	var balance float64 = 0
+
 	var choice int
 	var amount float64
 
