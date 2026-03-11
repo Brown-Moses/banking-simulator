@@ -1,9 +1,13 @@
 package main
 
 import (
+	"codewithwuruem/model"
 	"codewithwuruem/service"
 	"fmt"
 )
+
+// Define a global variable to hold the account balance
+var account = model.Account{Balance: 0}
 
 func main() {
 
@@ -17,6 +21,6 @@ func main() {
 
 		fmt.Println("Enter your choice: ")
 		//call the choice function to handle the user's input and perform the corresponding action
-		service.Choice()
+		service.Choice(&account)
 	}
 }

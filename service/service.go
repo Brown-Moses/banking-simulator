@@ -1,13 +1,12 @@
 package service
 
 import (
+	"codewithwuruem/model"
 	"fmt"
 	"os"
 )
 
-var balance float64 = 0
-
-func Choice() {
+func Choice(accountbalance *model.Account) {
 
 	var choice int
 	var amount float64
@@ -16,15 +15,15 @@ func Choice() {
 
 	switch choice {
 	case 1:
-		fmt.Println("Your current balance is: ", balance)
+		fmt.Println("Your current balance is: ", accountbalance.Balance)
 		fmt.Println("---------------------------")
 
 	case 2:
 		fmt.Println("Enter the amount to deposit: ")
 		fmt.Scan(&amount)
 		if amount > 0 {
-			balance += amount
-			fmt.Println("Amount successfully deposited:", balance)
+			accountbalance.Balance += amount
+			fmt.Println("Amount successfully deposited:", accountbalance.Balance)
 		} else {
 			fmt.Println("Invalid AMount")
 
@@ -34,12 +33,12 @@ func Choice() {
 	case 3:
 		fmt.Println("Enter the amount to withdraw: ")
 		fmt.Scan(&amount)
-		if amount > balance {
+		if amount > accountbalance.Balance {
 			fmt.Println("insufficient amount")
 
 		} else {
-			balance -= amount
-			fmt.Println("withdraw Successful: ", amount)
+			accountbalance.Balance -= amount
+			fmt.Println("withdraw Successful: ", accountbalance.Balance)
 		}
 		fmt.Println("---------------------------")
 
