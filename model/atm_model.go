@@ -1,7 +1,12 @@
 package model
 
 type Account struct {
-	AccountNumber string
-	PIN           string
-	Balance       float64
+	PIN         string
+	Transaction []Transaction
+	Balance     float64
+}
+
+type Transaction struct {
+	Type   string
+	Amount float64
 }

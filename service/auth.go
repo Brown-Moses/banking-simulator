@@ -1,19 +1,19 @@
 package service
 
 import (
-	"codewithwuruem/model"
 	"fmt"
 )
 
-func PINVerification(pin *model.Account) bool {
+func VerifyPIN() bool {
 
 	correctPIN := "1234"
+	var inputPIN string
 
 	fmt.Println("Enter your PIN: ")
-	fmt.Scan(&pin.PIN)
+	fmt.Scan(&inputPIN)
 	fmt.Println("---------------------------")
 
-	if pin.PIN == correctPIN {
+	if inputPIN == correctPIN {
 		return true
 	} else {
 		fmt.Println("Invalid PIN. Please try again.")
