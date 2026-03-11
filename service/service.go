@@ -4,6 +4,8 @@ import (
 	"codewithwuruem/model"
 	"fmt"
 	"os"
+
+	"golang.org/x/text/message"
 )
 
 func Choice(accountbalance *model.Account) {
@@ -11,11 +13,14 @@ func Choice(accountbalance *model.Account) {
 	var choice int
 	var amount float64
 
+	//formating the output to be more user-friendly
+	p := message.NewPrinter(message.MatchLanguage("en"))
+
 	fmt.Scan(&choice)
 
 	switch choice {
 	case 1:
-		fmt.Println("Your current balance is: ", accountbalance.Balance)
+		p.Println("Your current balance is: ", accountbalance.Balance)
 		fmt.Println("---------------------------")
 
 	case 2:
@@ -23,7 +28,7 @@ func Choice(accountbalance *model.Account) {
 		fmt.Scan(&amount)
 		if amount > 0 {
 			accountbalance.Balance += amount
-			fmt.Println("Amount successfully deposited:", accountbalance.Balance)
+			p.Println("Amount successfully deposited:", accountbalance.Balance)
 		} else {
 			fmt.Println("Invalid AMount")
 
@@ -38,7 +43,7 @@ func Choice(accountbalance *model.Account) {
 
 		} else {
 			accountbalance.Balance -= amount
-			fmt.Println("withdraw Successful: ", accountbalance.Balance)
+			p.Println("withdraw Successful: ", accountbalance.Balance)
 		}
 		fmt.Println("---------------------------")
 
