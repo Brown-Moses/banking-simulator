@@ -3,6 +3,7 @@ package service
 import (
 	"codewithwuruem/model"
 	"errors"
+	"time"
 )
 
 // check the balance of the account
@@ -20,6 +21,14 @@ func DepositMoney(accountbalance *model.Account, amount float64) error {
 
 	}
 	accountbalance.Balance += amount
+
+	transaction := model.Transaction{
+		Type:      "Deposit",
+		Amount:    amount,
+		Timestamp: time.Now(),
+	}
+	accountbalance.Transaction = append(accountbalance.Transaction, transaction)
+
 	return nil
 }
 
@@ -36,5 +45,13 @@ func WithdrawMoney(accountbalance *model.Account, amount float64) error {
 
 	}
 	accountbalance.Balance -= amount
+
+	transaction := model.Transaction{
+		Type:      "Withdrawal",
+		Amount:    amount,
+		Timestamp: time.Now(),
+	}
+	accountbalance.Transaction = append(accountbalance.Transaction, transaction)
+
 	return nil
 }
