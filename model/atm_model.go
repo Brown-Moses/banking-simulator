@@ -1,5 +1,7 @@
 package model
 
+import "time"
+
 type Account struct {
 	PIN         string
 	Transaction []Transaction
@@ -7,6 +9,7 @@ type Account struct {
 }
 
 type Transaction struct {
-	Type   string
-	Amount float64
+	Type      string
+	Amount    float64
+	Timestamp time.Time
 }
