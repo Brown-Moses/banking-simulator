@@ -26,7 +26,8 @@ func main() {
 			fmt.Println("1. Check Balance")
 			fmt.Println("2. Deposit Money")
 			fmt.Println("3. Withdraw Money")
-			fmt.Println("4. Exit")
+			fmt.Println("4. Transaction History")
+			fmt.Println("5. Exit")
 			fmt.Println("===========================")
 
 			fmt.Println("Enter your choice: ")
@@ -62,6 +63,15 @@ func main() {
 				fmt.Println("===========================")
 
 			case 4:
+				fmt.Println("Transaction History:")
+				fmt.Println("===========================")
+				transactions := service.GetTransactionsHistory(&account)
+				for _, transaction := range transactions {
+					p.Printf("%s: $%.2f on %s\n", transaction.Type, transaction.Amount, transaction.Timestamp.Format("2006-01-02 15:04:05"))
+				}
+				fmt.Println("===========================")
+
+			case 5:
 				fmt.Println("Thanks you for using our ATM.")
 				os.Exit(0)
 			default:

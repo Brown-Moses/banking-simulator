@@ -55,3 +55,8 @@ func WithdrawMoney(accountbalance *model.Account, amount float64) error {
 
 	return nil
 }
+
+// gets the history of transactions made
+func GetTransactionsHistory(accountbalance *model.Account) []model.Transaction {
+	return accountbalance.Transaction
+}
