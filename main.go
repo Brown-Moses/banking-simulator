@@ -5,6 +5,9 @@ import (
 	"codewithwuruem/service"
 	"fmt"
 	"os"
+
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 )
 
 func main() {
@@ -13,6 +16,8 @@ func main() {
 	var account = model.Account{Balance: 0, PIN: "1234"}
 	var choice int
 	var amount float64
+
+	p := message.NewPrinter(language.English)
 
 	if service.VerifyPIN() {
 
@@ -26,22 +31,35 @@ func main() {
 
 			fmt.Println("Enter your choice: ")
 			fmt.Scan(&choice)
-			//call the choice function to handle the user's input and perform the corresponding action
-			//service.Choice(&account)
 
 			switch choice {
+			//check balance
 			case 1:
 				service.CheckBalance(&account)
+				p.Println("Your current balance is: $", account.Balance)
+				fmt.Println("===========================")
 
+				//deposit money
 			case 2:
 				fmt.Print("Enter the amount to deposit: ")
 				fmt.Scan(&amount)
-				service.DepositMoney(&account, amount)
+				if err := service.DepositMoney(&account, amount); err != nil {
+					fmt.Println("Error:", err)
+				} else {
+					p.Println("Deposit successful. Balance: $", account.Balance)
+				}
+				fmt.Println("===========================")
 
+				//withdraw money
 			case 3:
 				fmt.Print("Enter the amount to withdraw: ")
 				fmt.Scan(&amount)
-				service.WithdrawMoney(&account, amount)
+				if err := service.WithdrawMoney(&account, amount); err != nil {
+					fmt.Println("Error:", err)
+				} else {
+					p.Println("Withdrawal successful. Balance: $", account.Balance)
+				}
+				fmt.Println("===========================")
 
 			case 4:
 				fmt.Println("Thanks you for using our ATM.")

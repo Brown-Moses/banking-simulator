@@ -2,42 +2,39 @@ package service
 
 import (
 	"codewithwuruem/model"
-	"fmt"
-
-	"golang.org/x/text/message"
+	"errors"
 )
 
-var p = message.NewPrinter(message.MatchLanguage("en"))
-
 // check the balance of the account
-func CheckBalance(accountbalance *model.Account) {
+func CheckBalance(accountbalance *model.Account) float64 {
 
-	p.Println("Your current balance is: ", accountbalance.Balance)
-	fmt.Println("---------------------------")
+	return accountbalance.Balance
+
 }
 
 // deposit money into the account
-func DepositMoney(accountbalance *model.Account, amount float64) {
+func DepositMoney(accountbalance *model.Account, amount float64) error {
 
-	if amount > 0 {
-		accountbalance.Balance += amount
-		p.Println("Amount successfully deposited:", accountbalance.Balance)
-	} else {
-		fmt.Println("Invalid AMount")
+	if amount <= 0 {
+		return errors.New("Invalid AMount")
 
 	}
-	fmt.Println("---------------------------")
+	accountbalance.Balance += amount
+	return nil
 }
 
 // withdraw money from the account
-func WithdrawMoney(accountbalance *model.Account, amount float64) {
+func WithdrawMoney(accountbalance *model.Account, amount float64) error {
+
+	if amount <= 0 {
+		return errors.New("Invalid Withdrawal Amount")
+
+	}
 
 	if amount > accountbalance.Balance {
-		fmt.Println("insufficient amount")
+		return errors.New("insufficient amount")
 
-	} else {
-		accountbalance.Balance -= amount
-		p.Println("withdraw Successful: ", accountbalance.Balance)
 	}
-	fmt.Println("---------------------------")
+	accountbalance.Balance -= amount
+	return nil
 }
